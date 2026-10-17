@@ -1,7 +1,7 @@
 <?php
-$id = $_GET['gid'];
-$offset = $_GET['offset'];
-$size = $_GET['size'];
+$id = (int)$_GET['gid'];
+$offset = (int)$_GET['offset'];
+$size = (int)$_GET['size'];
 $name = "/var/games/$id";
 $file = fopen($name, 'r');
 if ($file === false) {

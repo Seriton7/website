@@ -13,7 +13,7 @@ if (!$conn) {
     die('Connection failed: ' . mysqli_connect_error());
 }
 
-$n = $_GET['name'];
+$n = mysqli_real_escape_string($conn, $_GET['name']);
 $offset = (int)$_GET['offset'];
 
 $sql = "select * from games where id in (select game_id from game_players where nick='$n') and status='completed' order by time_start desc limit 10 offset $offset";

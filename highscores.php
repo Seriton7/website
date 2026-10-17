@@ -18,7 +18,7 @@ $sql = "select nick, wins from profiles order by wins desc";
 echo "<table><tr><td class='tableheader'>Player</td><td class='tableheader'>Won games</td></tr>";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
-    $name = $row['nick'];
+    $name = htmlspecialchars($row['nick']);
     $wins = $row['wins'];
     echo "<tr><td class='pname'>$name</td><td class='pscore'>$wins</td></tr>";
 }
@@ -42,7 +42,7 @@ if (mysqli_num_rows($result) > 0) {
     $losers = '';
     for ($i = 1; $i <= 8; $i++) {
         $team = $row["player${i}_team"];
-        $name = $row["player${i}_name"];
+        $name = htmlspecialchars($row["player${i}_name"]);
         if ($team == $winner) {
             if ($names != '') {
                 $names = "$names, $name";
@@ -78,10 +78,10 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $players = array();
-        $name = $row['name'];
+        $name = htmlspecialchars($row['name']);
         $num_players = 0;
         for ($i = 1; $i <= 6; $i++) {
-            $player = $row["player${i}_name"];
+            $player = htmlspecialchars($row["player${i}_name"]);
             if ($player != '') {
                 $players[$num_players] = $player;
                 $num_players++;
